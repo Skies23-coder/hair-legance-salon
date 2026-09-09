@@ -50,7 +50,7 @@ Payment choice: ${payment}
 Additional notes: ${notes}
     `.trim();
 
-    const whatsappNumber = "27730754203";
+    const whatsappNumber = "27676616742";
 
     window.open(
       `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
