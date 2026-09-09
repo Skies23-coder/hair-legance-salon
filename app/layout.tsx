@@ -3,7 +3,7 @@ import "./globals.css";
 import PwaRegister from "./pwa-register";
 
 const websiteUrl =
-  "https://hair-legance-salon-lmgwg5rqm-skies23-coder.vercel.app";
+  "https://hair-legance-salon.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(websiteUrl),

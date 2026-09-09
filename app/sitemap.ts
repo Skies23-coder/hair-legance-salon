@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const websiteUrl =
-    "https://hair-legance-salon-lmgwg5rqm-skies23-coder.vercel.app";
+    "https://hair-legance-salon.vercel.app";
 
   return [
     {
