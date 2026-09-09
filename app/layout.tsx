@@ -30,6 +30,10 @@ export const metadata: Metadata = {
 
   authors: [{ name: "Hair Legance Salon" }],
   creator: "Hair Legance Salon",
+  
+  verification: {
+  google: "DNDjhwaQKrRi-2JEY-ZsCxnsWvkbyzwPfh1vTmsZ24s",
+},
 
   alternates: {
     canonical: "/",
