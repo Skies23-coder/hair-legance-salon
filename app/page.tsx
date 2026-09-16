@@ -24,11 +24,11 @@ export default function Home() {
         <picture>
           <source
             media="(max-width: 700px)"
-            srcSet="/hair-legance-mobile.png"
+            srcSet="/icon-512.png"
           />
 
           <img
-            src="/hair-legance-desktop.png"
+            src="/icon-512.png"
             alt="Hair Legance Hair and Nail Salon"
           />
         </picture>
