@@ -38,7 +38,7 @@ export default function Home() {
 
       <section className="responsive-hero" id="home">
         <picture>
-          <source media="(max-width: 700px)" srcSet="/icon-512.png" />
+          <source media="(max-width: 700px)" srcSet="/hair-legance-heritage.png" />
 
           <img
             src="/icon-512.png"
