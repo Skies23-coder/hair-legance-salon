@@ -1,8 +1,23 @@
 import Link from "next/link";
 
+const websiteStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Hair Legance Salon",
+  alternateName: ["Hair Legance", "hair-legance-salon.vercel.app"],
+  url: "https://hair-legance-salon.vercel.app/",
+};
+
 export default function Home() {
   return (
     <main>
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify(websiteStructuredData),
+  }}
+/>
+
       <header className="site-header">
         <Link className="brand" href="/">
           Hair Legance
