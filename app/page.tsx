@@ -12,6 +12,7 @@ export default function Home() {
           <Link href="#services">Services</Link>
           <Link href="/hair-services">Hair</Link>
           <Link href="/nail-services">Nails</Link>
+          <Link href="/lash-services">Lashes</Link>
           <Link href="#contact">Contact</Link>
         </nav>
 
@@ -22,24 +23,21 @@ export default function Home() {
 
       <section className="responsive-hero" id="home">
         <picture>
-          <source
-            media="(max-width: 700px)"
-            srcSet="/icon-512.png"
-          />
+          <source media="(max-width: 700px)" srcSet="/icon-512.png" />
 
           <img
             src="/icon-512.png"
-            alt="Hair Legance Hair and Nail Salon"
+            alt="Hair Legance Hair, Nail and Lash Salon"
           />
         </picture>
       </section>
 
       <section className="intro-section">
-        <p className="eyebrow">HAIR & NAIL SALON · TRICHARDT</p>
+        <p className="eyebrow">HAIR, NAIL & LASH SALON · TRICHARDT</p>
         <h1>Beauty, handled with care.</h1>
 
         <p>
-          Professional hair and nail treatments in a welcoming and elegant
+          Professional hair, nail and lash treatments in a welcoming and elegant
           salon.
         </p>
 
@@ -66,8 +64,8 @@ export default function Home() {
               <h3>Hair Services</h3>
 
               <p>
-                Explore braids, treatments, styling, wig installations and
-                more.
+                Explore braids, protective hairstyles, relaxers, treatments and
+                hair-care extras.
               </p>
 
               <Link className="category-button" href="/hair-services">
@@ -83,12 +81,29 @@ export default function Home() {
               <h3>Nail Services</h3>
 
               <p>
-                Explore acrylic nails, gel treatments, manicures, pedicures and
-                nail art.
+                Explore manicures, pedicures, French nails, cat-eye designs and
+                nail care.
               </p>
 
               <Link className="category-button" href="/nail-services">
                 View nail services
+              </Link>
+            </div>
+          </article>
+
+          <article className="category-card lash-category">
+            <div className="category-overlay">
+              <span className="category-letter">L</span>
+              <p className="eyebrow">HAIR LEGANCE</p>
+              <h3>Lash Services</h3>
+
+              <p>
+                Explore cluster lashes, individual lash extensions and eyebrow
+                tinting.
+              </p>
+
+              <Link className="category-button" href="/lash-services">
+                View lash services
               </Link>
             </div>
           </article>
@@ -116,9 +131,9 @@ export default function Home() {
           <p>
             <strong>Opening hours</strong>
             <br />
-            Monday–Saturday
+            Monday-Saturday
             <br />
-            09:00–17:00
+            09:00-17:00
           </p>
 
           <p>
@@ -138,11 +153,11 @@ export default function Home() {
       <footer>
         <div>
           <h2>Hair Legance</h2>
-          <p>Hair & Nail Salon</p>
+          <p>Hair, Nail & Lash Salon</p>
         </div>
 
         <div>
-          <p>Monday–Saturday · 09:00–17:00</p>
+          <p>Monday-Saturday · 09:00-17:00</p>
           <p>073 075 4203</p>
           <p>Terra Nova Shopping Centre, Trichardt</p>
         </div>

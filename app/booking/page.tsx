@@ -2,20 +2,72 @@
 
 import Link from "next/link";
 
-const services = [
-  { name: "Wash & Blow-Dry", price: 220 },
-  { name: "Silk Press", price: 350 },
-  { name: "Knotless Braids", price: 650 },
-  { name: "Cornrows", price: 300 },
-  { name: "Hair Treatment", price: 280 },
-  { name: "Wig Installation", price: 450 },
-  { name: "Gel Overlay", price: 280 },
-  { name: "Acrylic Full Set", price: 420 },
-  { name: "Gel Manicure", price: 250 },
-  { name: "Classic Pedicure", price: 300 },
-  { name: "Nail Art", price: 120 },
-  { name: "Acrylic Soak-Off", price: 150 },
+const serviceGroups = [
+  {
+    category: "Hair Styles",
+    services: [
+      { name: "Straight Back", price: "R330 - R400" },
+      { name: "Knotless Braids", price: "R580 - R800" },
+      { name: "Da-Braids", price: "R450" },
+      { name: "Twist Braids", price: "R530 - R1,050" },
+      { name: "Straight Braids", price: "R430 - R500" },
+      { name: "Straight Up", price: "R380 - R450" },
+      { name: "Cornrows", price: "R210 - R230" },
+      { name: "Needle Yarn", price: "R230" },
+      { name: "Bonding", price: "R330" },
+      { name: "Faux Locks", price: "R530" },
+      { name: "Afro Twist", price: "R530" },
+      { name: "Pondo", price: "R250" },
+    ],
+  },
+  {
+    category: "Relaxers",
+    services: [
+      { name: "Mizani", price: "R450" },
+      { name: "Dark & Lovely", price: "R200" },
+      { name: "Blow Out", price: "R170" },
+      { name: "Restore Plus", price: "R170" },
+      { name: "Precise", price: "R170" },
+      { name: "Soft & Free", price: "R170" },
+      { name: "Easy Waves", price: "R170" },
+      { name: "Own Relaxer", price: "R150" },
+    ],
+  },
+  {
+    category: "Hair Treatments & Extras",
+    services: [
+      { name: "Mizani Treatment", price: "R250" },
+      { name: "Pure Royal", price: "R250" },
+      { name: "Other Treatment", price: "R170" },
+      { name: "Wash", price: "R60" },
+      { name: "Dye", price: "R150" },
+      { name: "Bleach", price: "R200" },
+      { name: "Undo", price: "R30 - R50" },
+    ],
+  },
+  {
+    category: "Nail Services",
+    services: [
+      { name: "Manicure", price: "From R280" },
+      { name: "Pedicure", price: "From R200" },
+      { name: "French Nails", price: "R350" },
+      { name: "French + Cat Eye", price: "R400" },
+      { name: "Cat Eye", price: "R350" },
+      { name: "Soak Off Only", price: "R100" },
+      { name: "Buff and Shine", price: "R150" },
+    ],
+  },
+  {
+    category: "Lash Services",
+    services: [
+      { name: "Cluster Lashes", price: "R180" },
+      { name: "Individual Lashes", price: "R250 - R300" },
+      { name: "Eyebrow Tint", price: "R120" },
+    ],
+  },
 ];
+
+const allServices = serviceGroups.flatMap((group) => group.services);
 
 export default function BookingPage() {
   function submitBooking(event: React.FormEvent<HTMLFormElement>) {
@@ -31,7 +83,7 @@ export default function BookingPage() {
     const payment = form.get("payment");
     const notes = form.get("notes") || "None";
 
-    const selectedService = services.find(
+    const selectedService = allServices.find(
       (service) => service.name === serviceValue
     );
 
@@ -43,7 +95,7 @@ I would like to book an appointment.
 Name: ${name}
 Phone: ${phone}
 Service: ${serviceValue}
-Price: R${selectedService?.price}
+Price: ${selectedService?.price || "Please confirm"}
 Date: ${date}
 Time: ${time}
 Payment choice: ${payment}
@@ -69,6 +121,7 @@ Additional notes: ${notes}
           <Link href="/">Home</Link>
           <Link href="/hair-services">Hair</Link>
           <Link href="/nail-services">Nails</Link>
+          <Link href="/lash-services">Lashes</Link>
         </nav>
 
         <Link className="header-button" href="/booking">
@@ -80,7 +133,7 @@ Additional notes: ${notes}
         <p className="eyebrow">HAIR LEGANCE</p>
         <h1>Book an Appointment</h1>
         <p>
-          Select your treatment, preferred date, time and payment option.
+          Select your treatment, preferred date, time and payment preference.
         </p>
       </section>
 
@@ -90,7 +143,7 @@ Additional notes: ${notes}
           <h2>Choose your appointment</h2>
 
           <p>
-            Complete the form and send your appointment details directly to
+            Complete the form and send your appointment request directly to
             Hair Legance through WhatsApp.
           </p>
 
@@ -98,9 +151,9 @@ Additional notes: ${notes}
             <p>
               <strong>Opening hours</strong>
               <br />
-              Monday–Saturday
+              Monday-Saturday
               <br />
-              09:00–17:00
+              09:00-17:00
             </p>
 
             <p>
@@ -140,22 +193,20 @@ Additional notes: ${notes}
 
           <label>
             Choose a service
-            <select name="service" required>
-              <optgroup label="Hair Services">
-                {services.slice(0, 6).map((service) => (
-                  <option key={service.name} value={service.name}>
-                    {service.name} — R{service.price}
-                  </option>
-                ))}
-              </optgroup>
+            <select name="service" defaultValue="" required>
+              <option value="" disabled>
+                Select a service
+              </option>
 
-              <optgroup label="Nail Services">
-                {services.slice(6).map((service) => (
-                  <option key={service.name} value={service.name}>
-                    {service.name} — R{service.price}
-                  </option>
-                ))}
-              </optgroup>
+              {serviceGroups.map((group) => (
+                <optgroup key={group.category} label={group.category}>
+                  {group.services.map((service) => (
+                    <option key={service.name} value={service.name}>
+                      {service.name} — {service.price}
+                    </option>
+                  ))}
+                </optgroup>
+              ))}
             </select>
           </label>
 
@@ -184,28 +235,19 @@ Additional notes: ${notes}
               <input
                 type="radio"
                 name="payment"
-                value="Pay 30% deposit online"
+                value="Pay at the salon"
                 required
               />
-              Pay 30% deposit online
-            </label>
-
-            <label className="payment-option">
-              <input
-                type="radio"
-                name="payment"
-                value="Pay full amount online"
-              />
-              Pay full amount online
-            </label>
-
-            <label className="payment-option">
-              <input
-                type="radio"
-                name="payment"
-                value="Pay at the salon"
-              />
               Pay at the salon
+            </label>
+
+            <label className="payment-option">
+              <input
+                type="radio"
+                name="payment"
+                value="Confirm payment method with the salon"
+              />
+              Confirm payment method with the salon
             </label>
           </fieldset>
 
@@ -227,11 +269,11 @@ Additional notes: ${notes}
       <footer>
         <div>
           <h2>Hair Legance</h2>
-          <p>Hair & Nail Salon</p>
+          <p>Hair, Nail & Lash Salon</p>
         </div>
 
         <div>
-          <p>Monday–Saturday · 09:00–17:00</p>
+          <p>Monday-Saturday · 09:00-17:00</p>
           <p>073 075 4203</p>
           <p>Terra Nova Shopping Centre, Trichardt</p>
         </div>

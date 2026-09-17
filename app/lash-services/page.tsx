@@ -1,51 +1,27 @@
 import Link from "next/link";
 
-const nailServices = [
+const lashServices = [
   {
-    name: "Manicure",
+    name: "Cluster Lashes",
     description:
-      "Professional hand and nail care finished according to your chosen style.",
-    price: "From R280",
+      "Beautiful lash clusters applied professionally for a fuller, glamorous look.",
+    price: "R180",
   },
   {
-    name: "Pedicure",
+    name: "Individual Lashes",
     description:
-      "Relaxing foot and nail care with a beautiful, polished finish.",
-    price: "From R200",
+      "Individual lash extensions carefully applied for a customised finish.",
+    price: "R250 - R300",
   },
   {
-    name: "French Nails",
+    name: "Eyebrow Tint",
     description:
-      "A timeless French nail set with clean, elegant tips.",
-    price: "R350",
-  },
-  {
-    name: "French + Cat Eye",
-    description:
-      "A stylish combination of French tips and a shimmering cat-eye effect.",
-    price: "R400",
-  },
-  {
-    name: "Cat Eye",
-    description:
-      "A striking magnetic cat-eye nail design with a beautiful reflective finish.",
-    price: "R350",
-  },
-  {
-    name: "Soak Off Only",
-    description:
-      "Safe and careful removal of your existing nail product.",
-    price: "R100",
-  },
-  {
-    name: "Buff and Shine",
-    description:
-      "Natural nails are shaped, gently buffed and polished for a healthy shine.",
-    price: "R150",
+      "Professional eyebrow tinting to enhance the shape and colour of your brows.",
+    price: "R120",
   },
 ];
 
-export default function NailServicesPage() {
+export default function LashServicesPage() {
   return (
     <main>
       <header className="site-header">
@@ -65,27 +41,26 @@ export default function NailServicesPage() {
         </Link>
       </header>
 
-      <section className="page-hero nail-page-hero">
+      <section className="page-hero lash-page-hero">
         <p className="eyebrow">HAIR LEGANCE</p>
-        <h1>Nail Services</h1>
+        <h1>Lash Services</h1>
         <p>
-          Treat your hands and feet to beautiful, carefully finished nail
-          treatments.
+          Enhance your natural beauty with professionally applied lashes and
+          beautifully defined brows.
         </p>
       </section>
 
       <section className="service-page-section">
         <div className="section-heading">
-          <p className="eyebrow">OUR NAIL SERVICES</p>
-          <h2>Choose your perfect set</h2>
+          <p className="eyebrow">OUR LASH SERVICES</p>
+          <h2>Choose your perfect look</h2>
           <p>
-            Choose from our professional nail-care treatments and beautiful
-            finishes.
+            Select a lash or eyebrow service designed to complement your style.
           </p>
         </div>
 
         <div className="detailed-service-grid">
-          {nailServices.map((service) => (
+          {lashServices.map((service) => (
             <article className="detailed-service-card" key={service.name}>
               <div>
                 <h3>{service.name}</h3>
@@ -106,7 +81,7 @@ export default function NailServicesPage() {
 
       <section className="service-callout">
         <p className="eyebrow">READY FOR YOUR APPOINTMENT?</p>
-        <h2>Beautiful nails start here.</h2>
+        <h2>Your perfect lash look starts here.</h2>
 
         <Link className="primary-button" href="/booking">
           Book your appointment
