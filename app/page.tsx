@@ -41,7 +41,7 @@ export default function Home() {
           <source media="(max-width: 700px)" srcSet="/hair-legance-heritage.png" />
 
           <img
-            src="/icon-512.png"
+            src="/hair-legance-heritage.png"
             alt="Hair Legance Hair, Nail and Lash Salon"
           />
         </picture>
