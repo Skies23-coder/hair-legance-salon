@@ -146,9 +146,9 @@ export default function Home() {
           <p>
             <strong>Opening hours</strong>
             <br />
-            Monday-Saturday
+            Monday-Sunday
             <br />
-            09:00-17:00
+            08:30-17:00
           </p>
 
           <p>

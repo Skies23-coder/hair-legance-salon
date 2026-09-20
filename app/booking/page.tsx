@@ -151,9 +151,9 @@ Additional notes: ${notes}
             <p>
               <strong>Opening hours</strong>
               <br />
-              Monday-Saturday
+              Monday-Sunday
               <br />
-              09:00-17:00
+              08:30-17:00
             </p>
 
             <p>
@@ -273,7 +273,7 @@ Additional notes: ${notes}
         </div>
 
         <div>
-          <p>Monday-Saturday · 09:00-17:00</p>
+          <p>Monday-Sunday · 08:30-17:00</p>
           <p>073 075 4203</p>
           <p>Terra Nova Shopping Centre, Trichardt</p>
         </div>
