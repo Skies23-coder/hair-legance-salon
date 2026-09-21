@@ -1,5 +1,16 @@
 import Link from "next/link";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Nail Services in Trichardt",
+  description:
+    "Explore manicures, pedicures, gel and acrylic nails at Hair Legance Salon in Trichardt. View services and request an appointment online.",
+  alternates: {
+    canonical: "https://hair-legance-salon.vercel.app/nail-services",
+  },
+};
+
 const nailServices = [
   {
     name: "Manicure",

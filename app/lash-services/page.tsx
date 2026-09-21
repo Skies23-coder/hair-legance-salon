@@ -1,5 +1,16 @@
 import Link from "next/link";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Lash Services in Trichardt",
+  description:
+    "Explore lash services at Hair Legance Salon in Trichardt. View treatments and request an appointment online.",
+  alternates: {
+    canonical: "https://hair-legance-salon.vercel.app/lash-services",
+  },
+};
+
 const lashServices = [
   {
     name: "Cluster Lashes",
