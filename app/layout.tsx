@@ -39,10 +39,6 @@ export const metadata: Metadata = {
     google: "DNDjhwaQKrRi-2JEY-ZsCxnsWvkbyzwPfh1vTmsZ24s",
   },
 
-  alternates: {
-    canonical: "/",
-  },
-
   openGraph: {
     title: "Hair Legance Salon | Hair, Nail & Lash Salon in Trichardt",
     description:
