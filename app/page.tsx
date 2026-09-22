@@ -160,7 +160,7 @@ export default function Home() {
           <p>
             <strong>Address</strong>
             <br />
-            Shop No. 3, Terra Nova Shopping Centre, Trichardt
+            Shop No. 30, Terra Nova Shopping Centre, Trichardt
           </p>
         </div>
       </section>
