@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
+
 
 const serviceGroups = [
   {
@@ -70,6 +72,23 @@ const serviceGroups = [
 const allServices = serviceGroups.flatMap((group) => group.services);
 
 export default function BookingPage() {
+  
+    const [selectedService, setSelectedService] = useState("");
+
+  useEffect(() => {
+    const serviceFromUrl = new URLSearchParams(window.location.search).get(
+      "service"
+    );
+
+    const serviceExists = allServices.some(
+      (service) => service.name === serviceFromUrl
+    );
+
+    if (serviceFromUrl && serviceExists) {
+      setSelectedService(serviceFromUrl);
+    }
+  }, []);
+
   function submitBooking(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -193,7 +212,12 @@ Additional notes: ${notes}
 
           <label>
             Choose a service
-            <select name="service" defaultValue="" required>
+            <select
+  name="service"
+  value={selectedService}
+  onChange={(event) => setSelectedService(event.target.value)}
+  required
+>
               <option value="" disabled>
                 Select a service
               </option>

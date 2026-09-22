@@ -106,9 +106,13 @@ export default function NailServicesPage() {
               <div className="service-card-bottom">
                 <strong>{service.price}</strong>
 
-                <Link className="small-book-button" href="/booking">
-                  Book now
-                </Link>
+<Link
+  className="small-book-button"
+  href={`/booking?service=${encodeURIComponent(service.name)}`}
+>
+  Book now
+</Link>
+                
               </div>
             </article>
           ))}
