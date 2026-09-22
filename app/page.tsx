@@ -37,15 +37,19 @@ export default function Home() {
       </header>
 
       <section className="responsive-hero" id="home">
-        <picture>
-          <source media="(max-width: 700px)" srcSet="/hair-legance-heritage.png" />
+  <picture>
+    <source
+      media="(max-width: 700px)"
+      srcSet="/hair-legance-3d-cover.png"
+    />
 
-          <img
-            src="/hair-legance-heritage.png"
-            alt="Hair Legance Hair, Nail and Lash Salon"
-          />
-        </picture>
-      </section>
+    <img
+      className="animated-cover-image"
+      src="/hair-legance-3d-cover.png"
+      alt="Hair Legance Hair, Nail and Lash Salon"
+    />
+  </picture>
+</section>
 
       <section className="intro-section">
         <p className="eyebrow">HAIR, NAIL & LASH SALON · TRICHARDT</p>

@@ -920,3 +920,158 @@ footer p {
     grid-template-columns: 1fr;
   }
 }
+
+/* Animated 3D salon cover */
+.responsive-hero {
+  position: relative;
+  overflow: hidden;
+  background: #080706;
+}
+
+.animated-cover-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform-origin: center;
+  animation: coverFloat 8s ease-in-out infinite alternate;
+  will-change: transform, filter;
+}
+
+.responsive-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    transparent 25%,
+    rgba(255, 220, 145, 0.05) 42%,
+    rgba(255, 231, 174, 0.3) 50%,
+    rgba(255, 220, 145, 0.05) 58%,
+    transparent 75%
+  );
+  transform: translateX(-120%);
+  animation: goldShine 7s ease-in-out infinite;
+}
+
+@keyframes coverFloat {
+  0% {
+    transform: scale(1);
+    filter: brightness(0.96);
+  }
+
+  100% {
+    transform: scale(1.035);
+    filter: brightness(1.08);
+  }
+}
+
+@keyframes goldShine {
+  0%,
+  20% {
+    transform: translateX(-120%);
+  }
+
+  60%,
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-cover-image,
+  .responsive-hero::after {
+    animation: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .responsive-hero {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .responsive-hero picture {
+    display: block;
+    width: 100%;
+  }
+
+  .responsive-hero .animated-cover-image {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    object-fit: contain;
+    animation: mobileCoverGlow 5s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes mobileCoverGlow {
+  from {
+    filter: brightness(0.96);
+  }
+
+  to {
+    filter: brightness(1.08);
+  }
+}
+
+/* Keep the complete 3D cover visible on desktop */
+.responsive-hero {
+  width: 100%;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+}
+
+.responsive-hero picture {
+  display: block;
+  width: 100%;
+}
+
+.responsive-hero .animated-cover-image {
+  display: block;
+  width: 100%;
+  height: auto !important;
+  max-height: none !important;
+  margin: 0;
+  object-fit: contain !important;
+  object-position: center;
+}
+
+/* Keep the desktop header neat on laptop screens */
+@media (min-width: 701px) {
+  .site-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: clamp(16px, 2vw, 32px);
+    padding: 14px clamp(20px, 4vw, 60px);
+  }
+
+  .site-header .brand {
+    white-space: nowrap;
+    font-size: clamp(24px, 2.5vw, 38px);
+    line-height: 1;
+  }
+
+  .site-header nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: clamp(14px, 2.2vw, 34px);
+  }
+
+  .site-header nav a {
+    white-space: nowrap;
+    font-size: clamp(14px, 1.5vw, 18px);
+  }
+
+  .site-header .header-button {
+    white-space: nowrap;
+    padding: 16px 24px;
+    line-height: 1;
+  }
+}
