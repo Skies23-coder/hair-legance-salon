@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import type { Metadata } from "next";
@@ -14,42 +15,49 @@ export const metadata: Metadata = {
 const nailServices = [
   {
     name: "Manicure",
+        image: "/services/manicure.png",
     description:
       "Professional hand and nail care finished according to your chosen style.",
     price: "From R280",
   },
   {
     name: "Pedicure",
+        image: "/services/pedicure.png",
     description:
       "Relaxing foot and nail care with a beautiful, polished finish.",
     price: "From R200",
   },
   {
     name: "French Nails",
+        image: "/services/french-nails.png",
     description:
       "A timeless French nail set with clean, elegant tips.",
     price: "R350",
   },
   {
     name: "French + Cat Eye",
+        image: "/services/french-cat-eye.png",
     description:
       "A stylish combination of French tips and a shimmering cat-eye effect.",
     price: "R400",
   },
   {
     name: "Cat Eye",
+        image: "/services/cat-eye.png",
     description:
       "A striking magnetic cat-eye nail design with a beautiful reflective finish.",
     price: "R350",
   },
   {
     name: "Soak Off Only",
+        image: "/services/soak-off-only.png",
     description:
       "Safe and careful removal of your existing nail product.",
     price: "R100",
   },
   {
     name: "Buff and Shine",
+        image: "/services/buff-and-shine.png",
     description:
       "Natural nails are shaped, gently buffed and polished for a healthy shine.",
     price: "R150",
@@ -98,10 +106,20 @@ export default function NailServicesPage() {
         <div className="detailed-service-grid">
           {nailServices.map((service) => (
             <article className="detailed-service-card" key={service.name}>
-              <div>
-                <h3>{service.name}</h3>
-                <p>{service.description}</p>
-              </div>
+              <div className="service-card-content">
+                    <div className="service-card-copy">
+                      <h3>{service.name}</h3>
+                      <p>{service.description}</p>
+                    </div>
+                    <Image
+                      className="service-card-photo"
+                      src={service.image}
+                      alt={service.name + " service illustration"}
+                      width={100}
+                      height={100}
+                      sizes="(max-width: 700px) 76px, 100px"
+                    />
+                  </div>
 
               <div className="service-card-bottom">
                 <strong>{service.price}</strong>

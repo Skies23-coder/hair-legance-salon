@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import type { Metadata } from "next";
@@ -14,18 +15,21 @@ export const metadata: Metadata = {
 const lashServices = [
   {
     name: "Cluster Lashes",
+        image: "/services/cluster-lashes.png",
     description:
       "Beautiful lash clusters applied professionally for a fuller, glamorous look.",
     price: "R180",
   },
   {
     name: "Individual Lashes",
+        image: "/services/individual-lashes.png",
     description:
       "Individual lash extensions carefully applied for a customised finish.",
     price: "R250 - R300",
   },
   {
     name: "Eyebrow Tint",
+        image: "/services/eyebrow-tint.png",
     description:
       "Professional eyebrow tinting to enhance the shape and colour of your brows.",
     price: "R120",
@@ -73,10 +77,20 @@ export default function LashServicesPage() {
         <div className="detailed-service-grid">
           {lashServices.map((service) => (
             <article className="detailed-service-card" key={service.name}>
-              <div>
-                <h3>{service.name}</h3>
-                <p>{service.description}</p>
-              </div>
+              <div className="service-card-content">
+                    <div className="service-card-copy">
+                      <h3>{service.name}</h3>
+                      <p>{service.description}</p>
+                    </div>
+                    <Image
+                      className="service-card-photo"
+                      src={service.image}
+                      alt={service.name + " service illustration"}
+                      width={100}
+                      height={100}
+                      sizes="(max-width: 700px) 76px, 100px"
+                    />
+                  </div>
 
               <div className="service-card-bottom">
                 <strong>{service.price}</strong>

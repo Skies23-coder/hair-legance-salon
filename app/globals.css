@@ -1075,3 +1075,56 @@ footer p {
     line-height: 1;
   }
 }
+
+/* Small service pictures inside the existing white cards */
+.detailed-service-card .service-card-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 100px;
+  align-items: start;
+  gap: 16px;
+}
+
+.service-card-copy { min-width: 0; }
+
+.detailed-service-card .service-card-photo {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.detailed-service-card .service-card-bottom {
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.detailed-service-card .small-book-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .detailed-service-card .service-card-content {
+    grid-template-columns: minmax(0, 1fr) 76px;
+    gap: 14px;
+  }
+
+  .detailed-service-card .service-card-photo {
+    width: 76px;
+    height: 76px;
+    border-radius: 8px;
+  }
+
+  .detailed-service-card h3 {
+    font-size: 1.65rem;
+    line-height: 1.15;
+  }
+
+  .detailed-service-card .service-card-bottom strong {
+    font-size: 1.5rem;
+  }
+}
