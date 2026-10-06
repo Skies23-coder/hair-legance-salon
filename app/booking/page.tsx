@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 
 const serviceGroups = [
@@ -74,6 +74,11 @@ const allServices = serviceGroups.flatMap((group) => group.services);
 export default function BookingPage() {
   
     const [selectedService, setSelectedService] = useState("");
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+  const requestId = useRef<string | null>(null);
+  const inFlight = useRef(false);
 
   useEffect(() => {
     const serviceFromUrl = new URLSearchParams(window.location.search).get(
@@ -89,44 +94,38 @@ export default function BookingPage() {
     }
   }, []);
 
-  function submitBooking(event: React.FormEvent<HTMLFormElement>) {
+  async function submitBooking(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
-    const form = new FormData(event.currentTarget);
-
-    const name = form.get("name");
-    const phone = form.get("phone");
-    const serviceValue = String(form.get("service"));
-    const date = form.get("date");
-    const time = form.get("time");
-    const payment = form.get("payment");
-    const notes = form.get("notes") || "None";
-
-    const selectedService = allServices.find(
-      (service) => service.name === serviceValue
-    );
-
-    const message = `
-Hello Hair Legance Salon 👋
-
-I would like to book an appointment.
-
-Name: ${name}
-Phone: ${phone}
-Service: ${serviceValue}
-Price: ${selectedService?.price || "Please confirm"}
-Date: ${date}
-Time: ${time}
-Payment choice: ${payment}
-Additional notes: ${notes}
-    `.trim();
-
-    const whatsappNumber = "27730754203";
-
-    window.open(
-      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
-      "_blank"
-    );
+    if (inFlight.current) return;
+    const element = event.currentTarget;
+    const form = new FormData(element);
+    requestId.current ??= crypto.randomUUID();
+    inFlight.current = true;
+    setSending(true);
+    setError("");
+    setSuccess(false);
+    try {
+      const response = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ requestId: requestId.current,
+          name: String(form.get("name") || ""), phone: String(form.get("phone") || ""),
+          service: String(form.get("service") || ""), date: String(form.get("date") || ""),
+          time: String(form.get("time") || ""), payment: String(form.get("payment") || ""),
+          notes: String(form.get("notes") || ""), website: String(form.get("website") || "") }),
+      });
+      const result = await response.json();
+      if (!response.ok || !result.success) throw new Error(result.error || "Booking could not be saved.");
+      setSuccess(true);
+      element.reset();
+      setSelectedService("");
+      requestId.current = null;
+    } catch (error) {
+      setError(error instanceof Error ? error.message : "Could not send your request. Please try again.");
+    } finally {
+      inFlight.current = false;
+      setSending(false);
+    }
   }
 
   return (
@@ -190,11 +189,15 @@ Additional notes: ${notes}
         </div>
 
         <form className="booking-form" onSubmit={submitBooking}>
+          {error && <p role="alert" style={{ color: "#ffb4b4" }}>{error}</p>}
+          {success && <p role="status" style={{ color: "#8aefb1" }}>Request received. The salon will contact you to confirm your appointment. No payment has been taken.</p>}
+          <div hidden aria-hidden="true"><input name="website" tabIndex={-1} autoComplete="off" /></div>
+          <fieldset disabled={sending} style={{ border: 0, padding: 0, margin: 0, minWidth: 0 }}>
           <label>
             Full name
             <input
               type="text"
-              name="name"
+              name="name" maxLength={100}
               placeholder="Enter your full name"
               required
             />
@@ -204,7 +207,7 @@ Additional notes: ${notes}
             Phone number
             <input
               type="tel"
-              name="phone"
+              name="phone" maxLength={30}
               placeholder="Enter your phone number"
               required
             />
@@ -278,15 +281,16 @@ Additional notes: ${notes}
           <label>
             Additional notes
             <textarea
-              name="notes"
+              name="notes" maxLength={1000}
               rows={4}
               placeholder="Tell the salon anything else it should know"
             />
           </label>
 
           <button className="whatsapp-button" type="submit">
-            Send booking to WhatsApp
+            {sending ? "Sending request…" : "Request appointment"}
           </button>
+        </fieldset>
         </form>
       </section>
 
