@@ -140,6 +140,53 @@ export default function Home() {
         </Link>
       </section>
 
+      <section className="salon-faq" id="faq" aria-labelledby="salon-faq-title">
+        <div className="section-heading">
+          <p className="eyebrow">BEFORE YOUR VISIT</p>
+          <h2 id="salon-faq-title">A little guidance before you book.</h2>
+          <p>Answers to the questions you may have about your appointment.</p>
+        </div>
+        <div className="salon-faq-list">
+          <details>
+            <summary>How do I request an appointment?</summary>
+            <div className="salon-faq-answer">
+              <p>Choose your service, then complete the <Link href="/booking">appointment request form</Link> with your contact details, preferred date and time. You can also add notes for the salon.</p>
+            </div>
+          </details>
+          <details>
+            <summary>When is my appointment confirmed?</summary>
+            <div className="salon-faq-answer">
+              <p>The success message means we have received your request. Your appointment is confirmed after the salon contacts you and agrees on the details. Submitting the form does not confirm your appointment automatically.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Can I pay at the salon?</summary>
+            <div className="salon-faq-answer">
+              <p>Yes, you can select “Pay at the salon” when requesting your appointment. You can also ask the salon to confirm the payment method with you. No payment is taken through the appointment request form.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Why can prices and treatment times vary?</summary>
+            <div className="salon-faq-answer">
+              <p>Prices and durations depend on the service, your chosen style, hair length and the work needed. The booking summary shows advertised prices and estimated durations. Please confirm the final details with the salon before your treatment.</p>
+            </div>
+          </details>
+          <details>
+            <summary>How do I change my appointment?</summary>
+            <div className="salon-faq-answer">
+              <p>Please <a href="https://wa.me/27730754203" target="_blank" rel="noopener noreferrer">contact us on WhatsApp</a> as soon as possible. Include your name, appointment date and the change you would like to make. The salon will confirm whether your preferred alternative is available.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Where is the salon, and when are you open?</summary>
+            <div className="salon-faq-answer">
+              <p>Find us at Shop No. 30, Terra Nova Shopping Centre, Trichardt. Our opening hours are Monday to Sunday, 08:30–17:00. Appointments must fit within the salon’s available hours.</p>
+            </div>
+          </details>
+        </div>
+        <p className="salon-faq-contact">Have another question? <a href="https://wa.me/27730754203" target="_blank" rel="noopener noreferrer">Chat with us on WhatsApp.</a></p>
+      </section>
+
       <section className="contact-section" id="contact">
         <div>
           <p className="eyebrow">VISIT HAIR LEGANCE</p>

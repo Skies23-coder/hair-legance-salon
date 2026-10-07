@@ -1329,3 +1329,56 @@ footer p {
   .booking-form .appointment-summary { padding: 18px; }
   .appointment-summary dl { grid-template-columns: 1fr; gap: 14px; }
 }
+
+/* Homepage frequently asked questions */
+.salon-faq {
+  background: var(--cream);
+  padding: 85px 7%;
+  scroll-margin-top: 120px;
+}
+.salon-faq-list { max-width: 900px; margin: 0 auto; }
+.salon-faq-list details {
+  background: #fffdf9;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+.salon-faq-list summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 60px;
+  padding: 20px 24px;
+  list-style: none;
+  color: #252019;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.salon-faq-list summary::-webkit-details-marker { display: none; }
+.salon-faq-list summary::after {
+  content: "+";
+  flex: none;
+  color: #92703d;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.salon-faq-list details[open] summary::after { content: "−"; }
+.salon-faq-list details[open] summary { background: #f6eddf; }
+.salon-faq-list summary:hover { background: #f6eddf; }
+.salon-faq-list summary:focus-visible {
+  outline: 3px solid #9b753d;
+  outline-offset: -4px;
+}
+.salon-faq-answer { padding: 0 24px 22px; }
+.salon-faq-answer p { margin: 18px 0 0; color: #5a5247; line-height: 1.8; font-size: .95rem; }
+.salon-faq a { color: #795522; text-decoration: underline; text-underline-offset: 3px; }
+.salon-faq-contact { text-align: center; margin: 28px auto 0; color: #5a5247; line-height: 1.7; }
+@media (max-width: 700px) {
+  .salon-faq { padding: 60px 20px; }
+  .salon-faq-list summary { padding: 18px; font-size: .95rem; }
+  .salon-faq-answer { padding: 0 18px 20px; }
+}
