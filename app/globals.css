@@ -1421,3 +1421,51 @@ footer p {
 @media (prefers-reduced-motion: reduce) {
   .salon-contact-actions .salon-contact-button { transition: none; }
 }
+
+/* Service search */
+.service-search-controls {
+  max-width: 1200px;
+  margin: 0 auto 34px;
+}
+.service-search-controls label { display: block; margin-bottom: 10px; font-weight: 600; color: #252019; }
+.service-search-input-row { display: flex; align-items: stretch; gap: 10px; }
+.service-search-input-row input {
+  width: 100%;
+  min-width: 0;
+  min-height: 50px;
+  border: 1px solid #d8c5aa;
+  border-radius: 8px;
+  padding: 14px 16px;
+  background: #fffdf9;
+  color: #252019;
+  font: inherit;
+  font-size: 1rem;
+}
+.service-search-input-row input::placeholder { color: #746958; }
+.service-search-input-row button, .service-search-empty button {
+  border: 1px solid #151412;
+  border-radius: 8px;
+  min-height: 48px;
+  padding: 12px 18px;
+  background: #151412;
+  color: #e0bd83;
+  font: inherit;
+  font-size: .85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.service-search-controls p { margin: 12px 0 0; color: #665c4e; font-size: .85rem; }
+.service-search-empty {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 22px;
+  border: 1px solid #e5cfaa;
+  background: #fffdf9;
+  text-align: center;
+}
+.service-search-empty h3 { font-family: Georgia, serif; font-size: 1.5rem; margin-bottom: 12px; }
+.service-search-empty p { color: #665c4e; line-height: 1.6; margin-bottom: 20px; }
+.service-search-area input:focus-visible, .service-search-area button:focus-visible {
+  outline: 3px solid #9b753d;
+  outline-offset: 3px;
+}

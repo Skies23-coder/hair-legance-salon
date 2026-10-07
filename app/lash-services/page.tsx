@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ServiceSearch from "../service-search";
 import Link from "next/link";
 
 import type { Metadata } from "next";
@@ -74,38 +74,7 @@ export default function LashServicesPage() {
           </p>
         </div>
 
-        <div className="detailed-service-grid">
-          {lashServices.map((service) => (
-            <article className="detailed-service-card" key={service.name}>
-              <div className="service-card-content">
-                    <div className="service-card-copy">
-                      <h3>{service.name}</h3>
-                      <p>{service.description}</p>
-                    </div>
-                    <Image
-                      className="service-card-photo"
-                      src={service.image}
-                      alt={service.name + " service illustration"}
-                      width={100}
-                      height={100}
-                      sizes="(max-width: 700px) 76px, 100px"
-                    />
-                  </div>
-
-              <div className="service-card-bottom">
-                <strong>{service.price}</strong>
-
-            <Link
-  className="small-book-button"
-  href={`/booking?service=${encodeURIComponent(service.name)}`}
->
-  Book now
-</Link>
-                
-              </div>
-            </article>
-          ))}
-        </div>
+        <ServiceSearch groups={[{ title: "", description: "", services: lashServices }]} placeholder="Search lashes or eyebrow tint…" />
       </section>
 
       <section className="service-callout">
