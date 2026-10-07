@@ -79,6 +79,19 @@ export default function BookingPage() {
   const [success, setSuccess] = useState(false);
   const requestId = useRef<string | null>(null);
   const inFlight = useRef(false);
+  const confirmationDialog = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const dialog = confirmationDialog.current;
+    if (!success || !dialog) return;
+    dialog.showModal();
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      dialog.close();
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [success]);
 
   useEffect(() => {
     const serviceFromUrl = new URLSearchParams(window.location.search).get(
@@ -162,7 +175,7 @@ export default function BookingPage() {
 
           <p>
             Complete the form and send your appointment request directly to
-            Hair Legance through WhatsApp.
+            Hair Legance. We will contact you to confirm your appointment.
           </p>
 
           <div className="business-details">
@@ -190,7 +203,7 @@ export default function BookingPage() {
 
         <form className="booking-form" onSubmit={submitBooking}>
           {error && <p role="alert" style={{ color: "#ffb4b4" }}>{error}</p>}
-          {success && <p role="status" style={{ color: "#8aefb1" }}>Request received. The salon will contact you to confirm your appointment. No payment has been taken.</p>}
+
           <div hidden aria-hidden="true"><input name="website" tabIndex={-1} autoComplete="off" /></div>
           <fieldset disabled={sending} style={{ border: 0, padding: 0, margin: 0, minWidth: 0 }}>
           <label>
@@ -306,6 +319,34 @@ export default function BookingPage() {
           <p>Terra Nova Shopping Centre, Trichardt</p>
         </div>
       </footer>
+      <dialog
+        ref={confirmationDialog}
+        className="booking-confirmation"
+        aria-labelledby="booking-confirmation-title"
+        aria-describedby="booking-confirmation-description booking-confirmation-note"
+        onCancel={() => setSuccess(false)}
+        onClose={() => setSuccess(false)}
+      >
+        {success && <div className="booking-confirmation-content">
+          <div className="booking-confirmation-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none">
+              <circle cx="32" cy="32" r="29" />
+              <path d="M18 33l9 9 19-20" />
+            </svg>
+          </div>
+          <p className="booking-confirmation-brand">HAIR LEGANCE</p>
+          <h2 id="booking-confirmation-title">Appointment request received</h2>
+          <p id="booking-confirmation-description">
+            Thank you for choosing Hair Legance. We’ll contact you soon to confirm your appointment.
+          </p>
+          <p id="booking-confirmation-note" className="booking-confirmation-note">
+            Your appointment is awaiting confirmation. No payment has been taken.
+          </p>
+          <button type="button" autoFocus onClick={() => setSuccess(false)}>
+            Done
+          </button>
+        </div>}
+      </dialog>
     </main>
   );
 }
