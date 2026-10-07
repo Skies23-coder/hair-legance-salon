@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import PwaRegister from "./pwa-register";
+import SiteEnhancements from "./site-enhancements";
 
 const websiteUrl = "https://hair-legance-salon.vercel.app";
 
@@ -92,6 +93,7 @@ export default function RootLayout({
       <body>
         <PwaRegister />
         {children}
+        <SiteEnhancements />
       </body>
     </html>
   );
