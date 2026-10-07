@@ -8,72 +8,82 @@ const serviceGroups = [
   {
     category: "Hair Styles",
     services: [
-      { name: "Straight Back", price: "R330 - R400" },
-      { name: "Knotless Braids", price: "R580 - R800" },
-      { name: "Da-Braids", price: "R450" },
-      { name: "Twist Braids", price: "R530 - R1,050" },
-      { name: "Straight Braids", price: "R430 - R500" },
-      { name: "Straight Up", price: "R380 - R450" },
-      { name: "Cornrows", price: "R210 - R230" },
-      { name: "Needle Yarn", price: "R230" },
-      { name: "Bonding", price: "R330" },
-      { name: "Faux Locks", price: "R530" },
-      { name: "Afro Twist", price: "R530" },
-      { name: "Pondo", price: "R250" },
+      { name: "Straight Back", price: "R330 - R400", duration: 120 },
+      { name: "Knotless Braids", price: "R580 - R800", duration: 180 },
+      { name: "Da-Braids", price: "R450", duration: 180 },
+      { name: "Twist Braids", price: "R530 - R1,050", duration: 240 },
+      { name: "Straight Braids", price: "R430 - R500", duration: 150 },
+      { name: "Straight Up", price: "R380 - R450", duration: 150 },
+      { name: "Cornrows", price: "R210 - R230", duration: 90 },
+      { name: "Needle Yarn", price: "R230", duration: 120 },
+      { name: "Bonding", price: "R330", duration: 90 },
+      { name: "Faux Locks", price: "R530", duration: 240 },
+      { name: "Afro Twist", price: "R530", duration: 240 },
+      { name: "Pondo", price: "R250", duration: 60 },
     ],
   },
   {
     category: "Relaxers",
     services: [
-      { name: "Mizani", price: "R450" },
-      { name: "Dark & Lovely", price: "R200" },
-      { name: "Blow Out", price: "R170" },
-      { name: "Restore Plus", price: "R170" },
-      { name: "Precise", price: "R170" },
-      { name: "Soft & Free", price: "R170" },
-      { name: "Easy Waves", price: "R170" },
-      { name: "Own Relaxer", price: "R150" },
+      { name: "Mizani", price: "R450", duration: 90 },
+      { name: "Dark & Lovely", price: "R200", duration: 90 },
+      { name: "Blow Out", price: "R170", duration: 60 },
+      { name: "Restore Plus", price: "R170", duration: 90 },
+      { name: "Precise", price: "R170", duration: 90 },
+      { name: "Soft & Free", price: "R170", duration: 90 },
+      { name: "Easy Waves", price: "R170", duration: 90 },
+      { name: "Own Relaxer", price: "R150", duration: 90 },
     ],
   },
   {
     category: "Hair Treatments & Extras",
     services: [
-      { name: "Mizani Treatment", price: "R250" },
-      { name: "Pure Royal", price: "R250" },
-      { name: "Other Treatment", price: "R170" },
-      { name: "Wash", price: "R60" },
-      { name: "Dye", price: "R150" },
-      { name: "Bleach", price: "R200" },
-      { name: "Undo", price: "R30 - R50" },
+      { name: "Mizani Treatment", price: "R250", duration: 60 },
+      { name: "Pure Royal", price: "R250", duration: 60 },
+      { name: "Other Treatment", price: "R170", duration: 60 },
+      { name: "Wash", price: "R60", duration: 30 },
+      { name: "Dye", price: "R150", duration: 90 },
+      { name: "Bleach", price: "R200", duration: 120 },
+      { name: "Undo", price: "R30 - R50", duration: 60 },
     ],
   },
   {
     category: "Nail Services",
     services: [
-      { name: "Manicure", price: "From R280" },
-      { name: "Pedicure", price: "From R200" },
-      { name: "French Nails", price: "R350" },
-      { name: "French + Cat Eye", price: "R400" },
-      { name: "Cat Eye", price: "R350" },
-      { name: "Soak Off Only", price: "R100" },
-      { name: "Buff and Shine", price: "R150" },
+      { name: "Manicure", price: "From R280", duration: 60 },
+      { name: "Pedicure", price: "From R200", duration: 60 },
+      { name: "French Nails", price: "R350", duration: 90 },
+      { name: "French + Cat Eye", price: "R400", duration: 105 },
+      { name: "Cat Eye", price: "R350", duration: 90 },
+      { name: "Soak Off Only", price: "R100", duration: 30 },
+      { name: "Buff and Shine", price: "R150", duration: 30 },
     ],
   },
   {
     category: "Lash Services",
     services: [
-      { name: "Cluster Lashes", price: "R180" },
-      { name: "Individual Lashes", price: "R250 - R300" },
-      { name: "Eyebrow Tint", price: "R120" },
+      { name: "Cluster Lashes", price: "R180", duration: 45 },
+      { name: "Individual Lashes", price: "R250 - R300", duration: 120 },
+      { name: "Eyebrow Tint", price: "R120", duration: 30 },
     ],
   },
 ];
 
 const allServices = serviceGroups.flatMap((group) => group.services);
 
+function formatDuration(minutes: number) {
+  const hours = Math.floor(minutes / 60);
+  const remaining = minutes % 60;
+  return [
+    hours ? hours + (hours === 1 ? " hour" : " hours") : "",
+    remaining ? remaining + " minutes" : "",
+  ].filter(Boolean).join(" ");
+}
+
 export default function BookingPage() {
   
     const [selectedService, setSelectedService] = useState("");
+  const serviceSummary = allServices.find(service => service.name === selectedService);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -249,6 +259,29 @@ export default function BookingPage() {
               ))}
             </select>
           </label>
+
+          <div className="appointment-summary-live" aria-live="polite" aria-atomic="true">
+            {serviceSummary && (
+              <section className="appointment-summary" aria-labelledby="appointment-summary-title">
+                <p className="appointment-summary-eyebrow">YOUR APPOINTMENT REQUEST</p>
+                <h3 id="appointment-summary-title">{serviceSummary.name}</h3>
+                <dl>
+                  <div>
+                    <dt>Advertised price</dt>
+                    <dd>{serviceSummary.price}</dd>
+                  </div>
+                  <div>
+                    <dt>Estimated duration</dt>
+                    <dd>{formatDuration(serviceSummary.duration)}</dd>
+                  </div>
+                </dl>
+                <p className="appointment-summary-note">
+                  Final price and duration may vary with your chosen style and hair length.
+                  The salon will contact you to confirm your appointment.
+                </p>
+              </section>
+            )}
+          </div>
 
           <div className="form-row">
             <label>
