@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SalonGallery from "./salon-gallery";
 
 const websiteStructuredData = {
   "@context": "https://schema.org",
@@ -122,6 +123,8 @@ export default function Home() {
           </article>
         </div>
       </section>
+
+      <SalonGallery />
 
       <section className="home-booking-callout">
         <div>
