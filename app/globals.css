@@ -1382,3 +1382,42 @@ footer p {
   .salon-faq-list summary { padding: 18px; font-size: .95rem; }
   .salon-faq-answer { padding: 0 18px 20px; }
 }
+
+/* Homepage directions and telephone buttons */
+.salon-contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 26px;
+}
+.salon-contact-actions .salon-contact-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 14px 20px;
+  background: #151412;
+  color: #e0bd83;
+  border: 1px solid #151412;
+  font-size: .85rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: background .2s ease, color .2s ease;
+}
+.salon-contact-button svg { width: 21px; height: 21px; flex: none; }
+.salon-contact-actions .salon-contact-button-outline {
+  background: transparent;
+  border-color: #9b753d;
+  color: #795522;
+}
+.salon-contact-actions .salon-contact-button:hover { background: #c49a58; color: #151412; }
+.salon-contact-actions .salon-contact-button:focus-visible { outline: 3px solid #9b753d; outline-offset: 4px; }
+@media (max-width: 480px) {
+  .salon-contact-actions { flex-direction: column; }
+  .salon-contact-actions .salon-contact-button { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .salon-contact-actions .salon-contact-button { transition: none; }
+}
